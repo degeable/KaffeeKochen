@@ -27,15 +27,15 @@ ported for sparkfun esp32
 
 #include <WiFi.h>
 
-const char* ssid     = "indanet";
-const char* password = "Frogst3r";
+const char* ssid     = "";
+const char* password = "";
 
 WiFiServer server(80);
-
+int pin = 25;     // tust du pin hier
 void setup()
 {
     Serial.begin(115200);
-    pinMode(25, OUTPUT);      // tust du pin hier
+    pinMode(pin, OUTPUT); 
 
     delay(10);
 
@@ -97,7 +97,7 @@ void loop(){
            t = tmp.toInt();
            Serial.println(t);
            running  = true;
-           digitalWrite(25, HIGH); 
+           digitalWrite(pin, HIGH); 
           }
         }
       }
@@ -107,7 +107,7 @@ void loop(){
     client.stop();
     Serial.println("Client Disconnected.");
     sleep(t);
-    digitalWrite(25, LOW); 
+    digitalWrite(pin, LOW); 
     running = false;
   }
 }
@@ -117,8 +117,7 @@ String prepareHtmlPage(int duration, bool timerRunning)
   String htmlPage =
      String("HTTP/1.1 200 OK\r\n") +
             "Content-Type: text/html\r\n" +
-            "Connection: close\r\n" +  // Die Verbindung wird nach der Übertragung geschlossen
-           // "Refresh: 5\r\n" +  // Automatisch alle 5 Sekunden neu laden
+            "Connection: close\r\n" +  
             "\r\n" +
             "<script>"+
             "function startTimer(duration, display) {"+
