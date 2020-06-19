@@ -27,8 +27,8 @@ ported for sparkfun esp32
 
 #include <WiFi.h>
 
-const char* ssid     = "";
-const char* password = "";
+const char* ssid     = "indanet";
+const char* password = "Frogst3r";
 
 WiFiServer server(80);
 int pin = 25;     // tust du pin hier
@@ -59,7 +59,7 @@ void setup()
     server.begin();
 
 }
- int t = 0;
+ int t = 40;
  bool running = false;
 
 void loop(){
@@ -119,6 +119,106 @@ String prepareHtmlPage(int duration, bool timerRunning)
             "Content-Type: text/html\r\n" +
             "Connection: close\r\n" +  
             "\r\n" +
+            "<style>"+
+             ":root {"+
+"  --backgroundColor: rgba(246, 241, 209);"+
+"  --colorShadeA: rgb(106, 163, 137);"+
+"  --colorShadeB: rgb(121, 186, 156);"+
+"  --colorShadeC: rgb(150, 232, 195);"+
+"  --colorShadeD: rgb(187, 232, 211);"+
+"  --colorShadeE: rgb(205, 255, 232);"+
+"}"+
+
+"@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700');"+
+"* {"+
+"  box-sizing: border-box;"+
+"}"+
+"*::before, *::after {"+
+"  box-sizing: border-box;"+
+"}"+
+"body {"+
+"  font-family: 'OpenSans', sans-serif;"+
+"  font-size: 1rem;"+
+"  line-height: 2;"+
+"  display: flex;"+
+"          align-items: center;"+
+"          justify-content: center;"+
+"  margin: 0;"+
+"  min-height: 100vh;"+
+"  background: var(--backgroundColor);"+
+"}"+
+"button {"+
+"  position: relative;"+
+"  display: inline-block;"+
+"  cursor: pointer;"+
+"  outline: none;"+
+"  border: 0;"+
+"  horizontal-align: middle;"+
+"  text-decoration: none;"+
+"  font-size: 1.5rem;"+
+"    color:var(--colorShadeA);"+
+"  font-weight: 700;"+
+"  text-transform: uppercase;"+
+"  font-family: inherit;"+
+"}"+
+
+"button.big-button {"+
+"   padding: 1em 2em;"+
+"   border: 2px solid var(--colorShadeA);"+
+"  border-radius: 1em;"+
+"  background: var(--colorShadeE);"+
+"transform-style: preserve-3d;"+
+"   transition: all 175ms cubic-bezier(0, 0, 1, 1);"+
+"}"+
+"button.big-button::before {"+
+"  position: absolute;"+
+"  content: '';"+
+"  width: 100%;"+
+"  height: 100%;"+
+"  top: 0;"+
+"  left: 0;"+
+"  right: 0;"+
+"  bottom: 0;"+
+"  background: var(--colorShadeC);"+
+"  border-radius: inherit;"+
+"    box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.75em 0 0 var(--colorShadeA);"+
+" transform: translate3d(0, 0.75em, -1em);"+
+"     transition: all 175ms cubic-bezier(0, 0, 1, 1);"+
+"}"+
+
+
+"button.big-button:hover {"+
+"  background: var(--colorShadeD);"+
+"  transform: translate(0, 0.375em);"+
+"}"+
+
+"button.big-button:hover::before {"+
+"  transform: translate3d(0, 0.75em, -1em);"+
+"}"+
+
+"button.big-button:active {"+
+"            transform: translate(0em, 0.75em);"+
+"}"+
+
+"button.big-button:active::before {"+
+"  transform: translate3d(0, 0, -1em);"+
+  
+"      box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.25em 0 0 var(--colorShadeB);"+
+
+"}"+
+".input {"+
+"  width: 20%;"+
+"  padding: 12px 20px;"+
+"  margin: 8px 0;"+
+"  display: inline-block;"+
+"  border: 1px solid #ccc;"+
+"  border-radius: 4px;"+
+"  box-sizing: border-box;"+
+"  font-size: 36px; "+
+//"  vertical-align: middle;"+
+"}"+
+
+            "</style>"+
             "<script>"+
             "function startTimer(duration, display) {"+
             "  var timer = duration, minutes, seconds;"+
@@ -141,11 +241,11 @@ String prepareHtmlPage(int duration, bool timerRunning)
             "            startTimer(time, display);"+
             "};"+
             "</script>"+
-            "<div>Timer <span id='timer'>00:00</span></div>"+
+            "<div> <img src='https://cdn.shopify.com/s/files/1/0704/4925/t/12/assets/animated-Grinder.gif' data-gifffer-width='250' data-gifffer-height='237' /> </div>"+ 
+            "<span  class='input' id='timer'>00:00</span>"+
             "<form id='timerForm'>"+
-            "<label for='Zeit'>Zeit</label>"+
-            "<input type='number' name='time' id='time' minlength='1' maxlength='60'>"+
-            "<button type='submit'>Eingaben absenden</button>"+
+            "<input  class='input' type='number' name='time' id='time' minlength='10' step='10' maxlength='60' value='40' >"+
+            "<button class='big-button' type='submit'>Eingaben absenden</button>"+
             "</form>"+
             "\r\n";
   return htmlPage;
