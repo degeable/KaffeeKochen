@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MachKaffeJunge</title>
+<meta charset="UTF-8">
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+   <script>  
+window.onload = function() {
+                        if(%RUNNING% == true && time != 0 ){
+                        startTimer();
+                                 document.querySelector("#goButton").style.display = "none";
+                                document.querySelector("#stopButton").style.display = "block";
+                        }
+    };
+       
+function startTimer() { 
+var timeleft = document.querySelector("#time").value;
+var downloadTimer = setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+      document.querySelector('#time').value = 0;
+      stopTimer();
+  }
+  timeleft -= 1;
+  document.querySelector('#time').value =  timeleft;
+}, 1000);
+}
+       
+function stopTimer() {
+    document.querySelector("#stopVal").value= document.querySelector("#time").value;
+    document.querySelector("#stop").submit();
+}
+       
+function validate() {
+    var time =document.querySelector("#time").value;
+  if(time <=0 || time > 60 ){
+     return false;
+     }
+     return true;
+}
+    </script>     
+
+</head>
+<body>
+        <div id="all">
+        <div>
+            <img id="grinder" src="%IMG%" alt="Grinder">    
+   
+            <form action="/start"  id='timerForm' onsubmit="validate()">
+            <input  class='input' type='number' name='start' id='time' minlength='0' step='1' maxlength='60' value='%TIMEVAL%'>
+            <button class='big-button' id="goButton" type='submit'>Mahl den Scheiss</button>
+            </form>
+            
+        </div>
+        <div>       
+            <form action="/stop" id="stop" name="stop" onsubmit="stopTimer()">
+            <input class="input" type="hidden" name="stopVal" id="stopVal" value="0">
+            <button class='big-button' id="stopButton" type='submit' >stop</button>
+            </form>
+        </div> 
+            </div>
+    </body>
+
+</html>
+
