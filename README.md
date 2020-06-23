@@ -3,4 +3,22 @@ ESP webserver that controls a coffee grinder
 
 Musst nur die Pins entsprechend setzen und ssid+pw dann sollte es gehen. 
 
-Look and feel mach ich dann die Tage denk ich
+Da jetzt ein Asynchroner Webserver drin ist, musst du noch die libs installieren. EInfach den inhalte des libraries ordner in den von der Adruino IDE kopieren. 
+
+Dazu brauchst du noch den Sketch uploader:
+
+1) Go to the releases page and click the ESP32FS-1.0.zip file to download.
+[Drückst du hier](https://github.com/me-no-dev/arduino-esp32fs-plugin/releases/https://github.com/me-no-dev/arduino-esp32fs-plugin/releases/)
+
+2) Go to the Arduino IDE directory, and open the Tools folder.
+
+
+3) Unzip the downloaded .zip folder to the Tools folder. You should have a similar folder structure:
+
+<home_dir>/Arduino-<version>/tools/ESP32FS/tool/esp32fs.jar
+
+(wenn du auf mac bist, musst du auf die arduino app gehen und inhalt anzeigen. Dann unter Contents/Java/tools/)
+
+4) Finally, restart your Arduino IDE.
+
+To check if the plugin was successfully installed, open your Arduino IDE. Select your ESP32 board, go to Tools and check that you have the option “ESP32 Sketch Data Upload“.
