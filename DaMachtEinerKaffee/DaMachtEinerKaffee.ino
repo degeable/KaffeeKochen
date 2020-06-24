@@ -3,8 +3,8 @@
 #include "SPIFFS.h"
 
 // Replace with your network credentials
-const char* ssid = "indanet";
-const char* password = "Frogst3r";
+const char* ssid = "SSID";
+const char* password = "PW";
 
 // Set LED GPIO
 const int ledPin = 25;
@@ -33,6 +33,7 @@ String processor(const String& var){
     }
   return String();
 }
+
  
 void setup(){
   // Serial port for debugging purposes
