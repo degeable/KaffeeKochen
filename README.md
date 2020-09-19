@@ -1,4 +1,4 @@
-# KaffeeKochenJunge
+# KaffeeKochen
 
 ESP webserver that controls a coffee grinder with a timer.
 
